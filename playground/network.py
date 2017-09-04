@@ -2,7 +2,7 @@
 # @Author: yingchipei
 # @Date:   2017-09-04 15:38:11
 # @Last Modified by:   yingchipei
-# @Last Modified time: 2017-09-04 17:26:14
+# @Last Modified time: 2017-09-04 17:48:33
 
 """
 network.py
@@ -78,6 +78,23 @@ class Network(object):
         """
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
+
+        # feedforward
+        activation = x
+        activations = [x]   # list to store all the activations, layer-by-layer
+        zs = []             # list to store all the z vectors, layer-by-layer
+        for b, w in zip(self.biases, self.weights):
+            z = np.dot(w, activation) + b
+            zs.append(z)
+            activation = sigmoid(z)
+            activations.append(activation)
+
+        # backward pass
+        delta = self.cost_derivative(activations[-1], y) * sigmoid_prime(zs[-1])
+        nabla_b[-1] = delta
+        
+
+
 
 
 
