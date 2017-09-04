@@ -15,7 +15,7 @@ The testing file (`test.py`) contains all three networks (`network.py`, `network
 Just type at shell: 
 
 ```bash
-python3.5 test.p
+python3.5 test.py
 ```
 
 In `test.py` there are examples of networks configurations with proper comments. 
